@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sᴧɴᴅᴇᴇᴘ sʜᴧʀᴍᴧ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+  <style>
+    .movie-poster:hover {
+      transform: scale(1.05);
+      transition: 0.3s ease-in-out;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    .social-links a {
+      margin: 0 10px;
+      color: #ff5733;
+      font-size: 1.5em;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ff0000;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="bg-black text-white dark:bg-white dark:text-black font-sans">
+
+  <!-- Navbar -->
+  <header class="flex items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300">
+    <div class="text-2xl font-bold">sᴧɴᴅᴇᴇᴘ sʜᴧʀᴍᴧ</div>
+    <div class="flex-grow px-4">
+      <input type="text" placeholder="Search movies..." class="w-full rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
+    </div>
+    <div class="flex items-center gap-4">
+  <button onclick="toggleTheme()" aria-label="Toggle Theme">
+    <i id="theme-icon" class="fas fa-moon text-xl transition duration-300"></i>
+  </button>
+</div>
+  </header>
+
+  <!-- Hero Slider Section -->
+  <section id="heroSection" class="relative h-[60vh] w-full overflow-hidden bg-cover bg-center transition-all duration-700" style="background-image: url('https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-6">
+      <h1 id="heroTitle" class="text-4xl font-bold mb-4 text-white drop-shadow-lg">Now Streaming: John Wick Chapter 4</h1>
+      <p id="heroDesc" class="mb-4 text-lg text-gray-300 max-w-md">A legendary assassin is back with vengeance. Action-packed and visually stunning.</p>
+      <button class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-full text-white">Watch Now</button>
+    </div>
+  </section>
+
+<!-- Latest Releases -->
+<section class="px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+  <!-- Existing movies -->
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'John Wick 4',
+    genre: 'Action, Thriller',
+    duration: '2h 49min',
+    rating: '7.9',
+    trailer: 'pU8-7BX9uxs',
+    description: 'A legendary assassin comes out of retirement to exact revenge and settle the score.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="John Wick 4" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">John Wick 4</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Avengers: Endgame',
+    genre: 'Action, Sci-Fi',
+    duration: '3h 1min',
+    rating: '8.4',
+    trailer: 'TcMBFSGVi1c',
+    description: 'The epic conclusion to the Infinity Saga with Earth’s mightiest heroes.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="Avengers: Endgame" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Avengers: Endgame</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Jujutsu Kaisen 0',
+    genre: 'Animation, Action, Fantasy',
+    duration: '1h 45min',
+    rating: '7.9',
+    trailer: 'eGSL-l95VXw',
+    description: 'Yuta Okkotsu gains control of a powerful cursed spirit and enrolls in Tokyo Jujutsu High School to control it and fight curses.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg" alt="Jujutsu Kaisen 0" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Jujutsu Kaisen 0</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Interstellar',
+    genre: 'Sci-Fi, Adventure',
+    duration: '2h 49min',
+    rating: '8.6',
+    trailer: 'zSWdZVtXT7E',
+    description: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Interstellar" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Interstellar</div>
+  </div>
+
+  <!-- New movies added below -->
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Demon Slayer: Mugen Train',
+    genre: 'Animation, Action, Fantasy',
+    duration: '1h 57min',
+    rating: '8.2',
+    trailer: '5zKjL03H1qw',
+    description: 'Tanjiro and the crew board the Mugen Train to fight a powerful demon.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg" alt="Demon Slayer: Mugen Train" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Mugen Train</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Spider-Man: No Way Home',
+    genre: 'Action, Sci-Fi, Adventure',
+    duration: '2h 28min',
+    rating: '8.2',
+    trailer: 'JfVOs4VSpmA',
+    description: 'Peter Parker seeks help from Doctor Strange after his identity is revealed.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Spider-Man: No Way Home" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">No Way Home</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Attack on Titan Final Season',
+    genre: 'Animation, Action, Drama',
+    duration: '24 Episodes',
+    rating: '9.0',
+    trailer: 'WsjOf9yvFko',
+    description: 'The epic conclusion to the Attack on Titan saga with intense battles and twists.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg" alt="Attack on Titan Final Season" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">AOT Final Season</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Inception',
+    genre: 'Action, Sci-Fi, Thriller',
+    duration: '2h 28min',
+    rating: '8.8',
+    trailer: '8hP9D6kZseM',
+    description: 'A thief who steals corporate secrets through dream-sharing technology is given a chance for redemption.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" alt="Inception" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Inception</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'The Dark Knight',
+    genre: 'Action, Crime, Drama',
+    duration: '2h 32min',
+    rating: '9.0',
+    trailer: 'EXeTwQWrcwY',
+    description: 'Batman battles the Joker in Gotham City to save the city from chaos.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" alt="The Dark Knight" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">The Dark Knight</div>
+  </div>
+
+  <div class="cursor-pointer group relative" onclick="showDetails({
+    title: 'Titanic',
+    genre: 'Drama, Romance',
+    duration: '3h 14min',
+    rating: '7.8',
+    trailer: '2e-eXJ6HgkQ',
+    description: 'A love story that blossoms aboard the ill-fated RMS Titanic.'
+  })">
+    <img src="https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg" alt="Titanic" class="rounded-lg movie-poster">
+    <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Titanic</div>
+  </div>
+</section>
+
+  <!-- Movie Details Modal -->
+  <div id="modalOverlay" onclick="closeModal()"
+       class="fixed inset-0 bg-black bg-opacity-80 hidden justify-center items-center z-50 p-4">
+    <div onclick="event.stopPropagation()" id="movieCard"
+         class="glass w-full max-w-2xl p-6 rounded-xl text-white relative">
+
+      <button onclick="closeModal()" class="absolute top-3 right-4 text-2xl hover:text-red-500">&times;</button>
+
+      <h2 id="modalTitle" class="text-3xl font-bold mb-2"></h2>
+      <p class="text-sm"><strong>Genre:</strong> <span id="modalGenre"></span></p>
+      <p class="text-sm"><strong>Duration:</strong> <span id="modalDuration"></span></p>
+      <p class="text-sm"><strong>IMDb:</strong> <span id="modalRating"></span></p>
+
+      <div class="my-4">
+        <iframe id="modalTrailer" class="w-full h-60 rounded-xl"
+                src=""
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+        </iframe>
+      </div>
+
+      <p id="modalDescription" class="text-sm text-gray-300 mb-4"></p>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition w-full sm:w-auto">Play Now</button>
+        <button class="border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition w-full sm:w-auto">➕ Add to Watchlist</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" id="footer">
+    <p>© 𝟤𝟢𝟤𝟧 sᴧɴᴅᴇᴇᴘ sʜᴧʀᴍᴧ ᴧʟʟ ʀɪɢʜᴛs ʀᴇsᴇʀᴠᴇᴅ</p>
+  </footer> 
+
+  <script>
+    
+  function toggleTheme() {
+  const html = document.documentElement;
+  const icon = document.getElementById('theme-icon');
+
+  if (html.classList.contains('dark')) {
+    html.classList.remove('dark');
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+  } else {
+    html.classList.add('dark');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  }
+}
+
+    function showDetails(movie) {
+      document.getElementById('modalTitle').textContent = movie.title;
+      document.getElementById('modalGenre').textContent = movie.genre;
+      document.getElementById('modalDuration').textContent = movie.duration;
+      document.getElementById('modalRating').textContent = movie.rating;
+      document.getElementById('modalDescription').textContent = movie.description;
+
+      const trailerURL = `https://www.youtube.com/embed/${movie.trailer}?autoplay=1&rel=0`;
+      document.getElementById('modalTrailer').src = trailerURL;
+
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.remove('hidden');
+
+      gsap.fromTo("#movieCard", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+    }
+
+    function closeModal() {
+      gsap.to("#movieCard", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          document.getElementById('modalOverlay').classList.add('hidden');
+          document.getElementById('modalTrailer').src = ''; // stop trailer autoplay
+        }
+      });
+    }
+
+    // Optional: Animate sections on load
+    gsap.from('section', {opacity: 0, y: 50, duration: 1, stagger: 0.2});
+  </script>
+
+  <script>
+    // Hero Section Carousel Data and Logic (unchanged from your original)
+    const heroMovies = [
+  {
+    title: "Now Streaming: Avengers: Endgame",
+    description: "The epic conclusion to the Infinity Saga with Earth’s mightiest heroes.",
+    bg: "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+  },
+  {
+    title: "Now Streaming: Interstellar",
+    description: "A journey beyond the stars in search of a new home for humanity.",
+    bg: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+  },
+  {
+    title: "Now Streaming: Demon Slayer: Mugen Train",
+    description: "Tanjiro faces the demon on a train filled with death and darkness.",
+    bg: "https://image.tmdb.org/t/p/original/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg"
+  },
+  {
+    title: "Now Streaming: John Wick 4",
+    description: "A legendary assassin comes out of retirement to exact revenge and settle the score.",
+    bg: "https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"
+  },
+  {
+    title: "Now Streaming: Spider-Man: No Way Home",
+    description: "Peter Parker seeks help from Doctor Strange after his identity is revealed.",
+    bg: "https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
+  },
+  {
+    title: "Now Streaming: Attack on Titan Final Season",
+    description: "The epic conclusion to the Attack on Titan saga with intense battles and twists.",
+    bg: "https://image.tmdb.org/t/p/original/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg"
+  },
+  {
+    title: "Now Streaming: Inception",
+    description: "A thief who steals corporate secrets through dream-sharing technology is given a chance for redemption.",
+    bg: "https://image.tmdb.org/t/p/original/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg"
+  }
+];
+
+    let currentHeroIndex = 0;
+
+    function updateHeroSection() {
+      const movie = heroMovies[currentHeroIndex];
+      const section = document.getElementById("heroSection");
+      const title = document.getElementById("heroTitle");
+      const desc = document.getElementById("heroDesc");
+
+      gsap.to(title, { opacity: 0, y: -20, duration: 0.4 });
+      gsap.to(desc, { opacity: 0, y: -20, duration: 0.4, onComplete: () => {
+        section.style.backgroundImage = `url('${movie.bg}')`;
+        title.textContent = movie.title;
+        desc.textContent = movie.description;
+        gsap.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+        gsap.fromTo(desc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+      }});
+
+      currentHeroIndex = (currentHeroIndex + 1) % heroMovies.length;
+    }
+
+    setInterval(updateHeroSection, 5000); // Change every 5 seconds
+  </script>
+
+</body>
+  </html>
